@@ -189,8 +189,38 @@ public class Linked {
     /**
      * 判断链表是否有环以及返回第一个点
      * 142 medium
-     * 
      */
+
+
+    /**
+     * 206. 反转链表
+     */
+
+    public ListNode reverseList(ListNode head) {
+        if (head == null) return null;
+        ListNode dummyNode = new ListNode(-1);
+
+        ListNode p = head;
+        ListNode third = head;
+        //设置一个前置节点
+        ListNode prev = dummyNode;
+        ListNode result = null;
+
+        //这里不能用p.next！=null，因为p.next会导致最后一个p节点不能执行next = prev；所以一定要注意循环条件!!!
+        //比方这里根据我们的思路动画，p是一定要把自己的next设置为prev的！！！
+        while (p != null) {
+            ListNode temp = p.next;
+            p.next = prev;
+            //更新这两个指针
+            prev = p;
+            p = temp;
+
+        }
+        //特殊处理前置节点
+        third.next = null;
+        return prev;
+
+    }
 
     public static void main(String[] args) {
         ListNode node1 = new ListNode(1);
