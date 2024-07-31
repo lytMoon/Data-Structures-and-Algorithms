@@ -240,10 +240,10 @@ public class Tree {
     /**
      * LCR 124. 推理二叉树
      */
-    public TreeNode deduceTree(int[] preorder, int[] inorder) {
-
-
-    }
+//    public TreeNode deduceTree(int[] preorder, int[] inorder) {
+//
+//
+//    }
 
 
     public static void main(String[] args) {
