@@ -49,7 +49,7 @@ public class QuickSort {
         int pivot = nums[left];
         int l = left;
         int r = right;
-        while (left<right) {
+        while (true) {
             /**
              * 这里需要注意一个小细节，因为我们是left指针先+的那么可能会出现一种情况那就是left+了后>right
              * left 在循环结束时实际上已经超出或者与 right 重合，它并不是当前小于 pivot 的元素，而是下一个可能不符合条件的元素。

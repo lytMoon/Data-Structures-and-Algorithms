@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * 二叉树相关
@@ -244,6 +241,93 @@ public class Tree {
 //
 //
 //    }
+
+
+    /**
+     * 非递归的前序遍历的实现
+     *
+     * @param root
+     */
+
+    static void preorderTraversal1(TreeNode root) {
+        Stack<TreeNode> stack = new Stack<>();
+        List<Integer> result = new LinkedList<>();
+
+        stack.push(root);
+        while (!stack.isEmpty()) {
+
+            TreeNode node = stack.pop();
+            result.add(node.val);
+
+            if (root.right != null) {
+                stack.push(root.right);
+            }
+            if (root.left != null) {
+                stack.push(root.left);
+            }
+        }
+
+    }
+
+    /**
+     * 非递归的中序遍历的实现
+     *
+     * @param root
+     * @return
+     */
+
+    public static List<Integer> inorderTraversal(TreeNode root) {
+
+        List<Integer> result = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode current = root;
+
+        while (current != null || !stack.isEmpty()) {
+            // 先将左子树的所有节点压入栈中
+            while (current != null) {
+                stack.push(current);
+                current = current.left;
+            }
+            // 当前节点为最左的叶子节点
+            current = stack.pop();
+            result.add(current.val); // 访问节点
+            // 进入右子树
+            current = current.right;
+        }
+
+        return result;
+    }
+
+
+    /**
+     * 非递归的后序遍历的实现
+     */
+
+    public static List<Integer> postorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        if (root == null) return result;
+
+        Stack<TreeNode> stack1 = new Stack<>();
+        Stack<TreeNode> stack2 = new Stack<>();
+        stack1.push(root);
+
+        while (!stack1.isEmpty()) {
+            TreeNode node = stack1.pop();
+            stack2.push(node);
+            if (node.left != null) {
+                stack1.push(node.left);
+            }
+            if (node.right != null) {
+                stack1.push(node.right);
+            }
+        }
+
+        while (!stack2.isEmpty()) {
+            result.add(stack2.pop().val);
+        }
+
+        return result;
+    }
 
 
     public static void main(String[] args) {
